@@ -3,10 +3,6 @@ var bodyParser = require('body-parser')
 var logger = require('morgan')
 var sequelize = require('sequelize')
 // var SavedArticles = require('./app/models/savedArticles')
-var Promise = require('bluebird')
-
-mongoose.Promise = Promise
-
 
 // Sets up the Express App
 // =============================================================
