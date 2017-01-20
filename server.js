@@ -1,4 +1,5 @@
 var express = require('express')
+var path = require('path')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
 var sequelize = require('sequelize')
@@ -39,6 +40,10 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 // Serve static content for the app from the 'public' directory in the application directory.
 app.use(express.static(process.cwd() + '/dist'))
+
+app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
 
 // serves index.html
 app.get('/', function(req, res) {
