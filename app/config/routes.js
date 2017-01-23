@@ -1,7 +1,14 @@
 var React = require('react')
 var ReactRouter = require('react-router')
+var ReactStormpath = require('react-stormpath')
 
-var Router = ReactRouter.Router
+var Router = ReactStormpath.Router
+var HomeRoute = ReactStormpath.HomeRoute
+var LoginRoute = ReactStormpath.LoginRoute
+var AuthenticatedRoute = ReactStormpath.AuthenticatedRoute
+
+
+// var Router = ReactRouter.Router  already coming from stormpath router above
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute
 var browserHistory = ReactRouter.browserHistory
