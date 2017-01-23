@@ -1,5 +1,6 @@
 var React = require('react')
 var ReactRouter = require('react-router')
+var ReactStormpath = require('react-stormpath')
 var Link = ReactRouter.Link
 
 var Home = React.createClass({

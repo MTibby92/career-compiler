@@ -1,6 +1,8 @@
 var React = require('react')
 var ReactRouter = require('react-router')
+var ReactStormpath = require('react-stormpath')
 var Link = ReactRouter.Link
+var LoginForm = ReactStormpath.LoginForm
 
 var Login = React.createClass({
 	getInitialState: function() {
@@ -10,8 +12,14 @@ var Login = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="jumbotron col-sm-12 text-center"> 
-				<h1>Login Page</h1>
+			<div className="container">
+				<div className="row">
+					<div className="col-xs-12">
+						<h3>Login</h3>
+						<hr />
+					</div>
+				</div>
+				<LoginForm />
 			</div>	
 		)
 	}

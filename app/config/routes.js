@@ -23,7 +23,7 @@ var routes = (
 	<Router history={browserHistory}>
 		<Route path="/" component={Header}>
 			<IndexRoute component={Home} />
-			<Route path="/login" component={Login} />
+			<LoginRoute path="/login" component={Login} />
 			<Route path="/signup" component={SignUp} />
 			<Route path="/myjobs" component={MyJobs} />
 		</Route>
