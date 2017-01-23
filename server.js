@@ -3,6 +3,7 @@ var path = require('path')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
 var sequelize = require('sequelize')
+var stormpath = require('express-stormpath')
 // var SavedArticles = require('./app/models/savedArticles')
 
 // Sets up the Express App
@@ -10,6 +11,13 @@ var sequelize = require('sequelize')
 var app = express()
 var PORT = process.env.PORT || 3000
 
+// Initializes Stormpath SDK
+app.use(stormpath.init(app, {
+  web: {
+    produces: ['application/json']
+  }
+  // ,website:true
+}))
 
 // Sets up the Express app to handle data parsing
 app.use(logger('dev'))
@@ -92,8 +100,13 @@ app.get('/', function(req, res) {
 // 	})
 // })
 
-
-
-app.listen(PORT, function () {
-	console.log('App listening on PORT ' + PORT)
+// initializes stormpath with server
+app.on('stormpath.ready', function() {
+	app.listen(PORT, function (err) {
+		if (err) {
+			return console.error(err)
+		}
+		console.log('App listening on PORT ' + PORT)
+	})
 })
+	
