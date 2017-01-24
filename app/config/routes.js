@@ -25,7 +25,7 @@ var routes = (
 			<IndexRoute component={Home} />
 			<LoginRoute path="/login" component={Login} />
 			<Route path="/signup" component={SignUp} />
-			<Route path="/myjobs" component={MyJobs} />
+			<AuthenticatedRoute path="/myjobs" component={MyJobs} />
 		</Route>
 	</Router>
 )

@@ -21,12 +21,27 @@ var Header = React.createClass({
 										<Link className="navbar-brand" to="/">career-compiler</Link>
 									</div>
 									<ul className="nav navbar-nav navbar-right">
-										<li><Link to="/signup"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+										<NotAuthenticated>	
+											<li>
+												<Link to="/signup"><span className="glyphicon glyphicon-user"></span> Sign Up</Link>
+											</li>
+										</NotAuthenticated>
 										<NotAuthenticated>
 											<li>
 												<LoginLink to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</LoginLink>
 											</li>
 										</NotAuthenticated>
+										<Authenticated>	
+											<li>
+												<Link to="/myjobs"><span className="glyphicon glyphicon-briefcase"></span> My Jobs</Link>
+											</li>
+										</Authenticated>
+										<Authenticated>
+											<li>
+												<LogoutLink><span className="glyphicon glyphicon-off"></span> Logout
+												</LogoutLink>
+											</li>
+										</Authenticated>
 									</ul>
 								</div>
 							</nav>

@@ -1,14 +1,8 @@
 var React = require('react')
 var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
-var Link = ReactRouter.Link
 
-var Search = require('./Search')
-var Results = require('./Results')
-
-var apiHelper = require('../utils/apiHelper')
-
-var Home = React.createClass({
+var Search = React.createClass({
 	getInitialState: function() {
 		return {
 			title: '',
@@ -35,21 +29,9 @@ var Home = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="container"> 
-				<h1>Career Compiler</h1>
-				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
-						<Search />
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
-						<Results />
-					</div>
-				</div>
-			</div>	
+			<h3>Search bar goes here</h3>
 		)
 	}
 })
 
-module.exports = Home
+module.exports = Search
