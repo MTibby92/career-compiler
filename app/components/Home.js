@@ -15,23 +15,15 @@ var Home = React.createClass({
 			location: ''
 		}
 	},
-	handleUpdateTitle: function(e) {
-		this.setState({
-			title: e.target.value
-		})
-	},
-	handleUpdateLocation: function(e) {
-		this.setState({
-			location: e.target.value
-		})
-	},
-	handleSubmitSearch: function(e) {
-		e.preventDefault()
-		this.props.setTerms([this.state.title, this.state.location])
-		this.setState({
-			title: '',
-			location: ''
-		})
+	componentDidUpdate: function(prevProps, prevState) {
+		if (prevState.title == this.state.title && prevState.location == this.state.location) {
+			// do nothing
+		} else {
+			apiHelper.getResults([this.state.title, this.state.location])
+				.then(function(results) {
+					// do something to display the results
+				}.bind(this))
+		}
 	},
 	render: function() {
 		return (
