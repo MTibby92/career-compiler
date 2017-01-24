@@ -5,13 +5,13 @@ var ReactStormpath = require('react-stormpath')
 var Search = React.createClass({
 	getInitialState: function() {
 		return {
-			title: '',
+			keyword: '',
 			location: ''
 		}
 	},
-	handleUpdateTitle: function(e) {
+	handleUpdateKeyword: function(e) {
 		this.setState({
-			title: e.target.value
+			keyword: e.target.value
 		})
 	},
 	handleUpdateLocation: function(e) {
@@ -21,15 +21,39 @@ var Search = React.createClass({
 	},
 	handleSubmitSearch: function(e) {
 		e.preventDefault()
-		this.props.setTerms([this.state.title, this.state.location])
+		this.props.setTerms([this.state.keyword, this.state.location])
 		this.setState({
-			title: '',
+			keyword: '',
 			location: ''
 		})
 	},
 	render: function() {
 		return (
-			<h3>Search bar goes here</h3>
+			// <h3>Search bar goes here</h3>
+			<form className="form-inline" onSubmit={this.handleSubmitSearch}>
+				<div className="form-group">
+					<label className="sr-only" htmlFor="keyword">Keyword</label>
+					<input 
+						type="text" 
+						className="form-control" 
+						id="keyword" 
+						placeholder="Keyword"
+						onChange={this.handleUpdateKeyword}
+						value={this.state.keyword} />
+				</div>
+				<div className="form-group">
+					<label className="sr-only" htmlFor="location">Location</label>
+					<input 
+						type="text" 
+						className="form-control" 
+						id="location" 
+						placeholder="Location"
+						onChange={this.handleUpdateLocation}
+						value={this.state.location} 
+						style={{marginLeft: -5}} />
+				</div>
+				<button type="submit" className="btn btn-default" style={{marginLeft:-5}}>Search</button>
+			</form>
 		)
 	}
 })

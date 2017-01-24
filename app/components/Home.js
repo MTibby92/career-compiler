@@ -11,19 +11,26 @@ var apiHelper = require('../utils/apiHelper')
 var Home = React.createClass({
 	getInitialState: function() {
 		return {
-			title: '',
+			keyword: '',
 			location: ''
 		}
 	},
 	componentDidUpdate: function(prevProps, prevState) {
-		if (prevState.title == this.state.title && prevState.location == this.state.location) {
+		if (prevState.keyword == this.state.keyword && prevState.location == this.state.location) {
 			// do nothing
 		} else {
-			apiHelper.getResults([this.state.title, this.state.location])
+			apiHelper.getAuthenticJobs([this.state.keyword, this.state.location])
 				.then(function(results) {
 					// do something to display the results
+					console.log(results.data)
 				}.bind(this))
 		}
+	},
+	setTerms: function(terms) {
+		this.setState({
+			keyword: terms[0],
+			location: terms[1]
+		});
 	},
 	render: function() {
 		return (
@@ -31,7 +38,7 @@ var Home = React.createClass({
 				<h1>Career Compiler</h1>
 				<div className="row">
 					<div className="col-sm-8 col-sm-offset-2">
-						<Search />
+						<Search setTerms={this.setTerms}/>
 					</div>
 				</div>
 				<div className="row">
