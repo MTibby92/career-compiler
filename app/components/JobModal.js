@@ -14,6 +14,12 @@ var JobModal = React.createClass({
 		}
 	},
 	render: function() {
+		if (!this.props.data.howto_apply) {
+			var external = this.props.data.url
+		} else {
+			var external = this.props.data.howto_apply
+		}
+
 		return (
 			<Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
 				<Modal.Header closeButton>
@@ -32,6 +38,8 @@ var JobModal = React.createClass({
 					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
 				</Modal.Body>
 				<Modal.Footer>
+					<Button >Add to MyJobs</Button>
+					<Button href={ external }>Apply</Button>
 					<Button onClick={this.props.onHide}>Close</Button>
 				</Modal.Footer>
 			</Modal>
