@@ -25,7 +25,7 @@ var JobTile = React.createClass({
 		}
 
 		return (
-			<li className="list-group-item media">
+			<li className="list-group-item media" onClick={this.props.onClick}>
 				<div className="media-left media-middle">
 					<a href="#">
 						<img className="media-object" style={{height: 75, width: 75}} src={(this.props.data.company.logo).split('.net')[1]} alt="logo" />

@@ -2,8 +2,9 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
 
+
 var JobTile = require('./JobTile')
-var Modal = require('./Modal')
+var JobModal = require('./JobModal')
 
 var Authenticated = ReactStormpath.Authenticated
 var NotAuthenticated = ReactStormpath.NotAuthenticated
@@ -11,8 +12,18 @@ var NotAuthenticated = ReactStormpath.NotAuthenticated
 var Results = React.createClass({
 	getInitialState: function() {
 		return {
-			
+			show: false
 		}
+	},
+	openModal: function() {
+		this.setState({
+			show: true
+		})
+	},
+	closeModal: function() {
+		this.setState({
+			show: false
+		})
 	},
 	render: function() {
 		return (
@@ -21,14 +32,14 @@ var Results = React.createClass({
 				<ul className="media-list">
 					{this.props.resultsOnPage.map(function(result, num) {
 						return (
-							<JobTile key={num} data={result} />
+							<JobTile key={num} data={result} onClick={this.openModal} />
 						)
 					}.bind(this))}
 				</ul>
 
 				{this.props.resultsOnPage.map(function(result, num) {
 					return (
-						<Modal key={num} data={result} />
+						<JobModal key={num} data={result} show={this.state.show} onHide={this.closeModal} />
 					)
 				}.bind(this))}
 				
