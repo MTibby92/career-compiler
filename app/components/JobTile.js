@@ -17,8 +17,8 @@ var JobTile = React.createClass({
 					</a>
 				</div>
 				<div className="media-body">
-					<h4 className="media-heading">Job Title</h4>
-					<p>Job Description Here</p>
+					<h4 className="media-heading">{this.props.data.tile}</h4>
+					<p>{(this.props.data.description).substring(0,200) + '...'}</p>
 				</div>
 			</li>
 		)
