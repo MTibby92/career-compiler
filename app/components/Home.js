@@ -12,7 +12,10 @@ var Home = React.createClass({
 	getInitialState: function() {
 		return {
 			keyword: '',
-			location: ''
+			location: '',
+			totalPages: 0,
+			page: 0,
+			resultsOnPage: []
 		}
 	},
 	componentDidUpdate: function(prevProps, prevState) {
@@ -22,7 +25,15 @@ var Home = React.createClass({
 			apiHelper.getAuthenticJobs([this.state.keyword, this.state.location])
 				.then(function(results) {
 					// do something to display the results
-					console.log(results.data)
+					if (results.data.listings.listing !== this.state.resultsOnPage) {
+						console.log(results.data.listings.listing)
+						this.setState({
+							totalPages: results.data.listings.pages,
+							page: results.data.listings.page,
+							resultsOnPage: results.data.listings.listing
+						})
+					}
+					
 				}.bind(this))
 		}
 	},
@@ -43,7 +54,7 @@ var Home = React.createClass({
 				</div>
 				<div className="row">
 					<div className="col-sm-8 col-sm-offset-2">
-						<Results />
+						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} />
 					</div>
 				</div>
 			</div>	

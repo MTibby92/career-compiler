@@ -18,8 +18,18 @@ var Results = React.createClass({
 		return (
 			<div className="container">
 				<h3>Results go here</h3>
-				<JobTile />
-				<Modal />
+				{this.props.resultsOnPage.map(function(result, num) {
+					return (
+						<JobTile key={num} data={result} />
+					)
+				}.bind(this))}
+
+				{this.props.resultsOnPage.map(function(result, num) {
+					return (
+						<Modal key={num} data={result} />
+					)
+				}.bind(this))}
+				
 			</div>
 		)
 	}
