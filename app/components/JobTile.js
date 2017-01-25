@@ -10,9 +10,17 @@ var JobTile = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="container">
-				Job Tile
-			</div>
+			<li className="list-group-item media">
+				<div className="media-left">
+					<a href="#">
+						<img className="media-object" src={(this.props.data.company.logo).split('.net')[1]} alt="logo" />
+					</a>
+				</div>
+				<div className="media-body">
+					<h4 className="media-heading">Job Title</h4>
+					<p>Job Description Here</p>
+				</div>
+			</li>
 		)
 	}
 })

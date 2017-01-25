@@ -16,13 +16,15 @@ var Results = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="container">
+			<div >
 				<h3>Results go here</h3>
-				{this.props.resultsOnPage.map(function(result, num) {
-					return (
-						<JobTile key={num} data={result} />
-					)
-				}.bind(this))}
+				<ul className="media-list">
+					{this.props.resultsOnPage.map(function(result, num) {
+						return (
+							<JobTile key={num} data={result} />
+						)
+					}.bind(this))}
+				</ul>
 
 				{this.props.resultsOnPage.map(function(result, num) {
 					return (
