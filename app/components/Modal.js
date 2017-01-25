@@ -2,13 +2,10 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
 
-var JobTile = require('./JobTile')
-var Modal = require('./Modal')
-
 var Authenticated = ReactStormpath.Authenticated
 var NotAuthenticated = ReactStormpath.NotAuthenticated
 
-var Results = React.createClass({
+var Modal = React.createClass({
 	getInitialState: function() {
 		return {
 			
@@ -17,12 +14,10 @@ var Results = React.createClass({
 	render: function() {
 		return (
 			<div className="container">
-				<h3>Results go here</h3>
-				<JobTile />
-				<Modal />
+				Modal
 			</div>
 		)
 	}
 })
 
-module.exports = Results
+module.exports = Modal
