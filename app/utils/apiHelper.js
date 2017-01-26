@@ -25,6 +25,10 @@ var helpers = {
 			// 	'accept': 'application/json'
 			// }
 		})
+	},
+	// queries post route on server.js; updates MongoDB with new article
+	postSaveToMyJobs: function(job) {
+		return axios.post('/api/saved', {job: job})
 	}
 }
 

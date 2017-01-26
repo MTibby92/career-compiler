@@ -4,7 +4,11 @@ var bodyParser = require('body-parser')
 var logger = require('morgan')
 var sequelize = require('sequelize')
 var stormpath = require('express-stormpath')
-// var SavedArticles = require('./app/models/savedArticles')
+var mongoose = require('mongoose')
+var SavedJobs = require('./app/models/savedJobs')
+var Promise = require('bluebird')
+
+mongoose.Promise = Promise
 
 // Sets up the Express App
 // =============================================================
@@ -27,22 +31,22 @@ app.use(bodyParser.text())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 
-// // handles web versus local DB connection
-// if (process.env.MONGODB_URI) {
-// 	mongoose.connect(process.env.MONGODB_URI)
-// } else {
-// 	mongoose.connect('mongodb://localhost/nyt')
-// }
+// handles web versus local DB connection
+if (process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI)
+} else {
+	mongoose.connect('mongodb://localhost/careerCompiler')
+}
 
-// var db = mongoose.connection
+var db = mongoose.connection
 
-// db.on('error', function(err) {
-//   console.log('Mongoose Error: ', err)
-// })
+db.on('error', function(err) {
+  console.log('Mongoose Error: ', err)
+})
 
-// db.once('open', function() {
-//   console.log('Mongoose connection successful.')
-// })
+db.once('open', function() {
+  console.log('Mongoose connection successful.')
+})
 
 
 
@@ -72,21 +76,25 @@ app.get('/', function(req, res) {
 // 		})
 // })
 
-// // adds new article to the database; need to convert date from string to date
-// app.post('/api/saved', function(req, res) {
-// 	SavedArticles.create({
-// 		title: req.body.article.title,
-// 		published: Date.parse(req.body.article.published),
-// 		url: req.body.article.url
-// 	}, function(err) {
-// 		if (err) {
-// 			console.log(err);
-// 		}
-// 		else {
-// 			res.send("Saved Search");
-// 		}
-// 	})
-// })
+// adds new article to the database; need to convert date from string to date
+app.post('/api/saved', function(req, res) {
+	SavedJobs.create({
+		apply_url: req.body.job.apply_url,
+		auth_jobs_id: req.body.job.id,
+		company_name: req.body.job.company.name,
+		company_url: req.body.job.company.url,
+		post_date: Date.parse(req.body.job.post_date),
+		title: req.body.job.title,
+		type: req.body.job.type.name
+	}, function(err) {
+		if (err) {
+			console.log(err)
+		}
+		else {
+			res.send("Job saved to MyJobs")
+		}
+	})
+})
 
 // // deletes document from database based on title match
 // app.delete('/api/saved', function(req, res){

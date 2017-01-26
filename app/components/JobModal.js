@@ -14,14 +14,14 @@ var JobModal = React.createClass({
 		}
 	},
 	render: function() {
-		if (!this.props.data.howto_apply) {
+		if (!this.props.data.apply_url) {
 			var external = this.props.data.url
 		} else {
-			var external = this.props.data.howto_apply
+			var external = this.props.data.apply_url
 		}
 
 		return (
-			<Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
+			<Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg" backdrop={false}>
 				<Modal.Header closeButton>
 					<Modal.Title id="contained-modal-title-lg">Modal heading</Modal.Title>
 				</Modal.Header>
