@@ -20,26 +20,36 @@ var JobModal = React.createClass({
 			var external = this.props.data.apply_url
 		}
 
+		if(this.props.data.company.location) {
+			var location = (
+				<p>{this.props.data.company.location.name}</p>
+			)
+		} else if (!this.props.data.company.location && this.props.data.telecommuting) {
+			var location = (
+				<p>Telecommute</p>
+			)
+		} else {
+			var location = (
+				<p>Location Unlisted</p>
+			)
+		}
+
 		return (
 			<Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg" backdrop={false}>
 				<Modal.Header closeButton>
-					<Modal.Title id="contained-modal-title-lg">Modal heading</Modal.Title>
+					<Modal.Title id="contained-modal-title-lg">{this.props.data.title} for {this.props.data.company.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<h4>Wrapped Text</h4>
-					<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-					<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-					<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-					<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+					<div dangerouslySetInnerHTML={{__html:this.props.data.description}} />
+					<br/>
+					<p><strong>Perks</strong>: {this.props.data.perks} </p>
+					<p><strong>Location</strong>: { location }</p>
+					<p>{this.props.data.type.name}</p>
+					<a href={this.props.data.url} target="_blank">Authentic Jobs Post</a>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button >Add to MyJobs</Button>
-					<Button href={ external }>Apply</Button>
+					<Button href={ external } target="_blank">Apply</Button>
 					<Button onClick={this.props.onHide}>Close</Button>
 				</Modal.Footer>
 			</Modal>
