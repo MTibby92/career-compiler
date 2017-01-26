@@ -2,9 +2,7 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
 
-
 var JobTile = require('./JobTile')
-var JobModal = require('./JobModal')
 
 var Authenticated = ReactStormpath.Authenticated
 var NotAuthenticated = ReactStormpath.NotAuthenticated
@@ -14,16 +12,6 @@ var Results = React.createClass({
 		return {
 			show: false
 		}
-	},
-	openModal: function() {
-		this.setState({
-			show: true
-		})
-	},
-	closeModal: function() {
-		this.setState({
-			show: false
-		})
 	},
 	render: function() {
 		return (
@@ -35,14 +23,7 @@ var Results = React.createClass({
 							<JobTile key={num} data={result} onClick={this.openModal} />
 						)
 					}.bind(this))}
-				</ul>
-
-				{this.props.resultsOnPage.map(function(result, num) {
-					return (
-						<JobModal key={num} data={result} show={this.state.show} onHide={this.closeModal} />
-					)
-				}.bind(this))}
-				
+				</ul>				
 			</div>
 		)
 	}

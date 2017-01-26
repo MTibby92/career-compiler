@@ -2,12 +2,23 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
 var moment = require('moment')
+var JobModal = require('./JobModal')
 
 var JobTile = React.createClass({
 	getInitialState: function() {
 		return {
-			
+			show: false
 		}
+	},
+	openModal: function() {
+		this.setState({
+			show: true
+		})
+	},
+	closeModal: function() {
+		this.setState({
+			show: false
+		})
 	},
 	render: function() {
 		if(this.props.data.company.location) {
@@ -25,7 +36,7 @@ var JobTile = React.createClass({
 		}
 
 		return (
-			<li className="list-group-item media" onClick={this.props.onClick}>
+			<li className="list-group-item media" onClick={this.openModal}>
 				<div className="media-left media-middle">
 					<a href="#">
 						<img className="media-object" style={{height: 75, width: 75}} src={(this.props.data.company.logo).split('.net')[1]} alt="logo" />
@@ -38,7 +49,9 @@ var JobTile = React.createClass({
 					{ location }
 					<p>{((this.props.data.description).substring(0,200)).replace(/(<([^>]+)>)/ig,"") + '...'}</p>
 				</div>
+				<JobModal data={this.props.data} show={this.state.show} onHide={this.closeModal} />
 			</li>
+
 		)
 	}
 })
