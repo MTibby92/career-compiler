@@ -13,6 +13,11 @@ var Results = React.createClass({
 			show: false
 		}
 	},
+	saveJob: function(index) {
+		console.log(index)
+		console.log(index.job_index)
+		this.props.passIndex(index.job_index)
+	},
 	render: function() {
 		return (
 			<div >
@@ -20,7 +25,7 @@ var Results = React.createClass({
 				<ul className="media-list">
 					{this.props.resultsOnPage.map(function(result, num) {
 						return (
-							<JobTile key={num} data={result} onClick={this.openModal} />
+							<JobTile key={num} tileNum={num} data={result} onClick={this.openModal} saveJob={this.saveJob} />
 						)
 					}.bind(this))}
 				</ul>				

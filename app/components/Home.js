@@ -15,7 +15,8 @@ var Home = React.createClass({
 			location: '',
 			totalPages: 0,
 			page: 0,
-			resultsOnPage: []
+			resultsOnPage: [],
+			saveJobIndex: null
 		}
 	},
 	componentDidUpdate: function(prevProps, prevState) {
@@ -36,12 +37,26 @@ var Home = React.createClass({
 					
 				}.bind(this))
 		}
+
+		if (prevState.savveJobIndex == this.state.saveJobIndex) {
+			// do nothing
+		} else {
+			apiHelper.postSaveToMyJobs(this.state.resultsOnPage[this.state.saveJobIndex])
+				.then(function(results) {
+					console.log('Results of the post:', results)
+				}.bind(this)) 
+		}
 	},
 	setTerms: function(terms) {
 		this.setState({
 			keyword: terms[0],
 			location: terms[1]
 		});
+	},
+	saveJobIndex: function(index) {
+		this.setState({
+			saveJobIndex: index
+		})
 	},
 	render: function() {
 		return (
@@ -54,7 +69,7 @@ var Home = React.createClass({
 				</div>
 				<div className="row">
 					<div className="col-sm-8 col-sm-offset-2">
-						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} />
+						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} passIndex={this.saveJobIndex}/>
 					</div>
 				</div>
 			</div>	

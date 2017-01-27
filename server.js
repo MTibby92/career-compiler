@@ -78,6 +78,7 @@ app.get('/', function(req, res) {
 
 // adds new article to the database; need to convert date from string to date
 app.post('/api/saved', function(req, res) {
+	console.log(req.body.job)
 	SavedJobs.create({
 		apply_url: req.body.job.apply_url,
 		auth_jobs_id: req.body.job.id,

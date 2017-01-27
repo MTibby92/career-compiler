@@ -20,6 +20,17 @@ var JobTile = React.createClass({
 			show: false
 		})
 	},
+	handleJobSave: function(e) {
+		e.preventDefault()
+		console.log(this.key)
+		console.log(this.props.tileNum)
+		
+		var obj = {
+			job_index: this.props.tileNum
+		}
+
+		this.props.saveJob(obj)
+	},
 	render: function() {
 		if(this.props.data.company.location) {
 			var location = (
@@ -49,7 +60,7 @@ var JobTile = React.createClass({
 					{ location }
 					<p>{((this.props.data.description).substring(0,200)).replace(/(<([^>]+)>)/ig,"") + '...'}</p>
 				</div>
-				<JobModal data={this.props.data} show={this.state.show} onHide={this.closeModal} />
+				<JobModal data={this.props.data} show={this.state.show} onHide={this.closeModal} onSave={this.handleJobSave} />
 			</li>
 
 		)
