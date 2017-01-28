@@ -26,7 +26,11 @@ var helpers = {
 			// }
 		})
 	},
-	// queries post route on server.js; updates MongoDB with new article
+	// queries get route on server.js; makes call to MongoDB for saved jobs
+	getSaveToMyJobs: function() {
+		return axios.get('/api/saved')
+	},
+	// queries post route on server.js; updates MongoDB with new job
 	postSaveToMyJobs: function(job) {
 		return axios.post('/api/saved', {job: job})
 	}

@@ -62,19 +62,18 @@ app.get('/', function(req, res) {
 	res.send('./dist/index.html')
 })
 
-// // pulls first 5 saved articles from the database and sorts by published date
-// app.get('/api/saved', function(req, res) {
-// 	SavedArticles.find({}).sort([
-// 			['published', 'descending']
-// 		]).limit(5).exec(function(err, doc) {
-// 			if (err) {
-// 				console.log(err);
-// 			}
-// 			else {
-// 				res.send(doc);
-// 			}
-// 		})
-// })
+// pulls first 5 saved articles from the database and sorts by published date
+app.get('/api/saved', function(req, res) {
+	SavedJobs.find({}).exec(function(err, doc) {
+			if (err) {
+				console.log(err)
+			}
+			else {
+				// console.log(doc)
+				res.send(doc)
+			}
+		})
+})
 
 // adds new article to the database; need to convert date from string to date
 app.post('/api/saved', function(req, res) {
@@ -85,6 +84,7 @@ app.post('/api/saved', function(req, res) {
 		company_name: req.body.job.company.name,
 		company_url: req.body.job.company.url,
 		post_date: Date.parse(req.body.job.post_date),
+		save_date: Date.now(),
 		title: req.body.job.title,
 		type: req.body.job.type.name
 	}, function(err) {

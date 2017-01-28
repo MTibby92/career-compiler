@@ -17,6 +17,9 @@ var SavedJobsSchema = new Schema({
 	post_date: {
 		type: Date
 	},
+	save_date: {
+		type: Date
+	},
 	title: {
 		type: String
 	},
