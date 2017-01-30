@@ -106,6 +106,7 @@ app.post('/api/saved', function(req, res) {
 // 	})
 // })
 
+// necessary for React router browser history; must go last in order to not conflict with other get routes
 app.get('*', function (req, res){
     res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
