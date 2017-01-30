@@ -23,6 +23,7 @@ var MyJobs = React.createClass({
 			// 		savedArticles: response.data,
 			// 	})
 			// }
+			console.log(response)
 			console.log(response.data)
 		}.bind(this))
 	},

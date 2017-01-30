@@ -28,5 +28,5 @@ var SavedJobsSchema = new Schema({
 	},
 });
 
-var SavedJobs = mongoose.model("SavedJobs", SavedJobsSchema);
+var SavedJobs = mongoose.model("SavedJob", SavedJobsSchema);
 module.exports = SavedJobs;

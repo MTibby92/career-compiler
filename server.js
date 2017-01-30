@@ -53,10 +53,6 @@ db.once('open', function() {
 // Serve static content for the app from the 'public' directory in the application directory.
 app.use(express.static(process.cwd() + '/dist'))
 
-app.get('*', function (req, res){
-    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
-})
-
 // serves index.html
 app.get('/', function(req, res) {
 	res.send('./dist/index.html')
@@ -64,13 +60,14 @@ app.get('/', function(req, res) {
 
 // pulls first 5 saved articles from the database and sorts by published date
 app.get('/api/saved', function(req, res) {
+	console.log('Find Jobs route triggered')
 	SavedJobs.find({}).exec(function(err, doc) {
 			if (err) {
 				console.log(err)
 			}
 			else {
 				// console.log(doc)
-				res.send(doc)
+				res.json(doc)
 			}
 		})
 })
@@ -108,6 +105,10 @@ app.post('/api/saved', function(req, res) {
 // 		}
 // 	})
 // })
+
+app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
 
 // initializes stormpath with server
 app.on('stormpath.ready', function() {
