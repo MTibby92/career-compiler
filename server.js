@@ -83,7 +83,12 @@ app.post('/api/saved', function(req, res) {
 		post_date: Date.parse(req.body.job.post_date),
 		save_date: Date.now(),
 		title: req.body.job.title,
-		type: req.body.job.type.name
+		type: req.body.job.type.name,
+		apply_date: '',
+		contact_name: '',
+		contact_info: '',
+		last_contact_date: '',
+		application_status: ''
 	}, function(err) {
 		if (err) {
 			console.log(err)

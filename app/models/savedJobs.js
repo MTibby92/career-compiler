@@ -26,6 +26,21 @@ var SavedJobsSchema = new Schema({
 	type: {
 		type: String
 	},
+	apply_date: {
+		type: Date
+	},
+	contact_name: {
+		type: String
+	},
+	contact_info: {
+		type: String
+	},
+	last_contact_date: {
+		type: Date
+	},
+	application_status: {
+		type: String
+	}
 });
 
 var SavedJobs = mongoose.model("SavedJob", SavedJobsSchema);
