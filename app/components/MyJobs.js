@@ -2,6 +2,8 @@ var React = require('react')
 var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
 
+var JobDescription = require('./JobDescription')
+
 var apiHelper = require('../utils/apiHelper')
 
 var ReactBsTable = require("react-bootstrap-table")
@@ -12,7 +14,7 @@ var MyJobs = React.createClass({
 	getInitialState: function() {
 		return {
 			jobs: [],
-			selected: {}		
+			selected: {}	
 		}
 	},
 	// runs when the component first loads
@@ -28,6 +30,23 @@ var MyJobs = React.createClass({
 			console.log(response.data)
 		}.bind(this))
 	},
+	// handleRowClick: function(row) {
+	// 	this.setState({
+	// 		apply_url: row.apply_url,
+	// 		auth_jobs_id: row.auth_jobs_id,
+	// 		company_name: row.company_name,
+	// 		company_url: row.company_url,
+	// 		post_date: row.post_date,
+	// 		save_date: row.save_date,
+	// 		title: row.title,
+	// 		type: row.type,
+	// 		apply_date: row.apply_date,
+	// 		contact_name: row.contact_name,
+	// 		contact_info: row.contact_info,
+	// 		last_contact_date: row.last_contact_date,
+	// 		application_status: row.application_status
+	// 	})
+	// },
 	render: function() {
 		var myJobs = this.state.jobs
 		// [
@@ -74,20 +93,23 @@ var MyJobs = React.createClass({
 				console.log('The following row was clicked:', row)
 				console.log(this)
 				this.setState({
-					apply_url: row.apply_url,
-					auth_jobs_id: row.auth_jobs_id,
-					company_name: row.company_name,
-					company_url: row.company_url,
-					post_date: row.post_date,
-					save_date: row.save_date,
-					title: row.title,
-					type: row.type,
-					apply_date: row.apply_date,
-					contact_name: row.contact_name,
-					contact_info: row.contact_info,
-					last_contact_date: row.last_contact_date,
-					application_status: row.application_status
+						selected: {
+							apply_url: row.apply_url,
+							auth_jobs_id: row.auth_jobs_id,
+							company_name: row.company_name,
+							company_url: row.company_url,
+							post_date: row.post_date,
+							save_date: row.save_date,
+							title: row.title,
+							type: row.type,
+							apply_date: row.apply_date,
+							contact_name: row.contact_name,
+							contact_info: row.contact_info,
+							last_contact_date: row.last_contact_date,
+							application_status: row.application_status
+						}
 				})
+				// this.handleRowClick(row)
 			}.bind(this)
 		}
 
@@ -112,44 +134,7 @@ var MyJobs = React.createClass({
 						</BootstrapTable>
 					</div>
 				</div>
-				<div className='row'>
-					<div className='col-sm-8 col-offset-2'>
-						<div className='jumbotron'>
-							<div className='row'>
-								<div className='col-sm-4'>
-									<p>Authentic Jobs ID:</p>
-									<p>Job Title:</p>
-									<p>Company Name:</p>
-									<p>Type of Position:</p>
-									<p>Application URL:</p>
-									<p>Company Website:</p>
-									<p>Date of Job Post:</p>
-									<p>Date Job Saved:</p>
-									<p>Date of Application:</p>
-									<p>Contact Name:</p>
-									<p>Contact Info:</p>
-									<p>Date of Last Contact:</p>
-									<p>Status:</p>
-								</div>
-								<div className='col-sm-8'>
-									<p>{this.state.selected.apply_url}</p>
-									<p>{this.state.selected.auth_jobs_id}</p>
-									<p>{this.state.selected.company_name}</p>
-									<p>{this.state.selected.company_url}</p>
-									<p>{this.state.selected.post_date}</p>
-									<p>{this.state.selected.save_date}</p>
-									<p>{this.state.selected.title}</p>
-									<p>{this.state.selected.type}</p>
-									<p>{this.state.selected.apply_date}</p>
-									<p>{this.state.selected.contact_name}</p>
-									<p>{this.state.selected.contact_info}</p>
-									<p>{this.state.selected.last_contact_date}</p>
-									<p>{this.state.selected.application_status}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<JobDescription selected={this.state.selected} />
 			</div>
 		)
 	}
