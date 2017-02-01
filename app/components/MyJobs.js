@@ -48,6 +48,9 @@ var MyJobs = React.createClass({
 	// 		application_status: row.application_status
 	// 	})
 	// },
+	// handleUpdateJob: function() {
+
+	// },
 	render: function() {
 		var myJobs = this.state.jobs
 		// [
@@ -66,7 +69,12 @@ var MyJobs = React.createClass({
 		function onBeforeSaveCell(row, cellName, cellValue) {
 			// You can do any validation on here for editing value,
 			// return false for reject the editing
+			console.log(row._id)
 			console.log(row, cellName, cellValue)
+
+			apiHelper.updateMyJobs(row).then(function(response) {
+				console.log(response)
+			})
 
 			return true
 		}
@@ -103,6 +111,7 @@ var MyJobs = React.createClass({
 				console.log(this)
 				this.setState({
 						selected: {
+							monogo_id: row._id,
 							apply_url: row.apply_url,
 							auth_jobs_id: row.auth_jobs_id,
 							company_name: row.company_name,

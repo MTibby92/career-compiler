@@ -33,6 +33,10 @@ var helpers = {
 	// queries post route on server.js; updates MongoDB with new job
 	postSaveToMyJobs: function(job) {
 		return axios.post('/api/saved', {job: job})
+	},
+	// posts updates made from MyJobs table
+	updateMyJobs: function(job) {
+		return axios.post('/api/update', {job: job})
 	}
 }
 

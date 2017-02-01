@@ -99,6 +99,15 @@ app.post('/api/saved', function(req, res) {
 	})
 })
 
+app.post('/api/update', function(req, res) {
+	console.log(req.body.job)
+	console.log(req.body.job._id)
+	SavedJobs.update({_id: req.body.job._id}, { $set: { apply_date: req.body.job.apply_date, contact_name: req.body.job.contact_name, contact_info: req.body.job.contact_info, last_contact_date: req.body.job.last_contact_date, application_status: req.body.job.application_status }}, function(err, raw) {
+		if (err) throw err;
+		console.log(raw)
+	})
+})
+
 // // deletes document from database based on title match
 // app.delete('/api/saved', function(req, res){
 // 	SavedArticles.findOne({title: req.body.article.title}, function(err, doc) {

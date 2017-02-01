@@ -15,6 +15,7 @@ var JobDescription = React.createClass({
 		} else {
 			this.setState({
 				selected: {
+					monogo_id: this.props.selected.monogo_id,
 					apply_url: this.props.selected.apply_url,
 					auth_jobs_id: this.props.selected.auth_jobs_id,
 					company_name: this.props.selected.company_name,
