@@ -11,11 +11,23 @@ var JobTile = React.createClass({
 			saved: false
 		}
 	},
+	// for intial search after refresh or page change
 	componentDidMount: function() {
 		apiHelper.getJobSaveStatus(this.props.data.id).then(function(response) {
 			console.log(response.data)
 			this.handleButtonStatus(response.data)
 		}.bind(this))
+	},
+	// for new searches so that tiles update saved status
+	componentDidUpdate: function(prevProps, prevState) {
+		if (prevProps.data.id == this.props.data.id) {
+			// do nothing
+		} else {
+			apiHelper.getJobSaveStatus(this.props.data.id).then(function(response) {
+				console.log(response.data)
+				this.handleButtonStatus(response.data)
+			}.bind(this))
+		}	
 	},
 	openModal: function() {
 		this.setState({
