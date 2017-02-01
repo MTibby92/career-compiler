@@ -1,6 +1,7 @@
 var React = require('react')
 var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
+var moment = require('moment')
 
 var JobDescription = require('./JobDescription')
 
@@ -82,6 +83,14 @@ var MyJobs = React.createClass({
 		// 	}
 		// };
 
+		function dateFormatter(cell, row) {
+			if (cell) {
+				return `${moment(cell).format('ll')}`
+			} else {
+				return ''
+			}
+		}
+
 		var cellEditProp = {
 			mode: 'dbclick',
 			blurToSave: true,
@@ -126,10 +135,10 @@ var MyJobs = React.createClass({
 							<TableHeaderColumn dataField='company_url' editable={ false } hidden>Company Website</TableHeaderColumn>
 							<TableHeaderColumn dataField='post_date' editable={ false } hidden>Date of Job Post</TableHeaderColumn>
 							<TableHeaderColumn dataField='save_date' editable={ false } hidden>Date Job Saved</TableHeaderColumn>
-							<TableHeaderColumn dataField='apply_date' editable={{type: 'datetime'}}>Date of Application</TableHeaderColumn>
+							<TableHeaderColumn dataField='apply_date' dataFormat={ dateFormatter} editable={{type: 'datetime'}} width='150'>Date of Application</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_name'>Contact Name</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_info'>Contact Info</TableHeaderColumn>
-							<TableHeaderColumn dataField='last_contact_date' editable={{type: 'date'}}>Date of Last Contact</TableHeaderColumn>
+							<TableHeaderColumn dataField='last_contact_date' dataFormat={ dateFormatter} editable={{type: 'date'}} width='150'>Date of Last Contact</TableHeaderColumn>
 							<TableHeaderColumn dataField='application_status'>Status</TableHeaderColumn>
 						</BootstrapTable>
 					</div>

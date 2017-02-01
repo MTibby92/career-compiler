@@ -1,6 +1,7 @@
 var React = require('react')
 var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
+var moment = require('moment')
 
 var JobDescription = React.createClass({
 	getInitialState: function() {
@@ -37,27 +38,83 @@ var JobDescription = React.createClass({
 				<div className='col-sm-8 col-sm-offset-2'>
 					<div className='jumbotron'>
 						<div className='row'>
-							<div className='col-sm-10 col-sm-offset-1'>
-								<table className="table table-hover">
-									<tr>
-										<td>Authentic Jobs ID:</td>
-										<td>{this.state.selected.auth_jobs_id}</td>
-									</tr>
-								</table>
-									<p><span>Authentic Jobs ID:</span><span className='text-right'>{this.state.selected.auth_jobs_id}</span></p>
-									<p><span>Job Title:</span><span className='text-right'>{this.state.selected.title}</span></p>
-									<p><span>Company Name:</span><span className='text-right'>{this.state.selected.company_name}</span></p>
-									<p><span>Type of Position:</span><span className='text-right'>{this.state.selected.type}</span></p>
-									<p><span>Application URL:</span><span className='text-right'>{this.state.selected.apply_url}</span></p>
-									<p><span>Company Website:</span><span className='text-right'>{this.state.selected.company_url}</span></p>
-									<p><span>Date of Job Post:</span><span className='text-right'>{this.state.selected.post_date}</span></p>
-									<p><span>Date Job Saved:</span><span className='text-right'>{this.state.selected.save_date}</span></p>
-									<p><span>Date of Application:</span><span className='text-right'>{this.state.selected.apply_date}</span></p>
-									<p><span>Contact Name:</span><span className='text-right'>{this.state.selected.contact_name}</span></p>
-									<p><span>Contact Info:</span><span className='text-right'>{this.state.selected.contact_info}</span></p>
-									<p><span>Date of Last Contact:</span><span className='text-right'>{this.state.selected.last_contact_date}</span></p>
-									<p><span>Status:</span><span className='text-right'>{this.state.selected.application_status}</span></p>
-								
+							<div className='col-sm-12'>
+								<table className="table table-hover table-responsive">
+									<colgroup>
+										<col className="col-sm-3" />
+										<col className="col-sm-9" />
+									</colgroup>
+									<tbody>
+										<tr>
+											<td>Authentic Jobs ID:</td>
+											<td>{this.state.selected.auth_jobs_id}</td>
+										</tr>
+										<tr>
+											<td>Job Title:</td>
+											<td>{this.state.selected.title}</td>
+										</tr>
+										<tr>
+											<td>Company Name:</td>
+											<td>{this.state.selected.company_name}</td>
+										</tr>
+										<tr>
+											<td>Type of Position:</td>
+											<td>{this.state.selected.type}</td>
+										</tr>
+										<tr>
+											<td>Application URL:</td>
+											<td>{this.state.selected.apply_url}</td>
+										</tr>
+										<tr>
+											<td>Company Website:</td>
+											<td>{this.state.selected.company_url}</td>
+										</tr>
+										<tr>
+											<td>Date of Job Post:</td>
+											{this.state.selected.post_date ?
+												<td>{moment(this.state.selected.post_date).format('ll')}</td>
+												:
+												<td></td>
+											}
+										</tr>
+										<tr>
+											<td>Date Job Saved:</td>
+											{this.state.selected.save_date ?
+												<td>{moment(this.state.selected.save_date).format('ll')}</td>
+												:
+												<td></td>
+											}
+										</tr>
+										<tr>
+											<td>Date of Application:</td>
+											{this.state.selected.apply_date ?
+												<td>{moment(this.state.selected.apply_date).format('ll')}</td>
+												:
+												<td></td>
+											}
+										</tr>
+										<tr>
+											<td>Contact Name:</td>
+											<td>{this.state.selected.contact_name}</td>
+										</tr>
+										<tr>
+											<td>Contact Info:</td>
+											<td>{this.state.selected.contact_info}</td>
+										</tr>
+										<tr>
+											<td>Date of Last Contact:</td>
+											{this.state.selected.last_contact_date ?
+												<td>{moment(this.state.selected.last_contact_date).format('ll')}</td>
+												:
+												<td></td>
+											}
+										</tr>
+										<tr>
+											<td>Status:</td>
+											<td>{this.state.selected.application_status}</td>
+										</tr>
+									</tbody>
+								</table>							
 							</div>
 						</div>
 					</div>
