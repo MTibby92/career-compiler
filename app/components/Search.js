@@ -28,9 +28,13 @@ var Search = React.createClass({
 		})
 	},
 	render: function() {
+		var searchBarStyle = {
+			margin: 40 + 'px auto'
+		}
+
 		return (
 			// <h3>Search bar goes here</h3>
-			<form className="form-inline" onSubmit={this.handleSubmitSearch}>
+			<form className="form-inline" style={searchBarStyle} onSubmit={this.handleSubmitSearch}>
 				<div className="form-group">
 					<label className="sr-only" htmlFor="keyword">Keyword</label>
 					<input 

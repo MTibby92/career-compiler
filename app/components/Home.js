@@ -64,16 +64,38 @@ var Home = React.createClass({
 		})
 	},
 	render: function() {
+		var searchHomeStyle = {
+			height: 90 + 'vh',
+			// width: 100 + 'vw',
+		    zIndex: 9,
+		    textAlign: 'center',
+		    position: 'absolute',
+		    width: 800,
+		    top: 50 + '%',
+		    marginTop: -180,
+		    left: 50 + '%',
+		    marginLeft: -400,
+		}
+
+		var searchHeaderStyle = {
+
+		}
+
+		var resultsHomeStyle = {
+			marginTop: 100 + 'vh',
+		}
+
+
 		return (
-			<div className="container"> 
-				<h1>Career Compiler</h1>
+			<div className="container-fluid"> 
 				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
+					<div className="col-sm-12" style={searchHomeStyle}>
+						<h1 className="text-center" style={searchHeaderStyle}>Career Compiler</h1>
 						<Search setTerms={this.setTerms}/>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
+					<div className="col-sm-4 col-sm-offset-4" style={resultsHomeStyle}>
 						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} passIndex={this.saveJobIndex} onPageUpdate={this.handlePageUpdate} />
 					</div>
 				</div>

@@ -33,18 +33,20 @@ var Results = React.createClass({
 							<JobTile key={num} tileNum={num} data={result} onClick={this.openModal} saveJob={this.saveJob} />
 						)
 					}.bind(this))}
-				</ul>	
-				<Pagination 
-					items={this.props.totalPages} 
-					maxButtons={this.props.totalPages} 
-					activePage={parseInt(this.props.page)} 
-					prev
-				    next
-				    first
-				    last
-				    ellipsis
-				    boundaryLinks
-				    onSelect={this.handleSelect} />			
+				</ul>
+				<div className="text-center">
+					<Pagination 
+						items={this.props.totalPages} 
+						maxButtons={this.props.totalPages} 
+						activePage={parseInt(this.props.page)} 
+						prev
+					    next
+					    first
+					    last
+					    ellipsis
+					    boundaryLinks
+					    onSelect={this.handleSelect} />		
+				</div>	
 			</div>
 		)
 	}

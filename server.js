@@ -62,7 +62,7 @@ app.get('/', function(req, res) {
 app.get('/api/saved', function(req, res) {
 	console.log('Find Jobs route triggered')
 	SavedJobs.find({}).sort([
-			['save_date', 'descending']
+			['post_date', 'descending']
 		]).exec(function(err, doc) {
 			if (err) {
 				console.log(err)
