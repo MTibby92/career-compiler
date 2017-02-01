@@ -13,17 +13,17 @@ var Home = React.createClass({
 		return {
 			keyword: '',
 			location: '',
-			totalPages: 0,
-			page: 0,
+			totalPages: 1,
+			page: 1,
 			resultsOnPage: [],
 			saveJobIndex: null
 		}
 	},
 	componentDidUpdate: function(prevProps, prevState) {
-		if (prevState.keyword == this.state.keyword && prevState.location == this.state.location) {
+		if (prevState.keyword == this.state.keyword && prevState.location == this.state.location && prevState.page == this.state.page) {
 			// do nothing
 		} else {
-			apiHelper.getAuthenticJobs([this.state.keyword, this.state.location])
+			apiHelper.getAuthenticJobs([this.state.keyword, this.state.location, this.state.page])
 				.then(function(results) {
 					// do something to display the results
 					if (results.data.listings.listing !== this.state.resultsOnPage) {
@@ -58,6 +58,11 @@ var Home = React.createClass({
 			saveJobIndex: index
 		})
 	},
+	handlePageUpdate: function(page) {
+		this.setState({
+			page: page
+		})
+	},
 	render: function() {
 		return (
 			<div className="container"> 
@@ -69,7 +74,7 @@ var Home = React.createClass({
 				</div>
 				<div className="row">
 					<div className="col-sm-8 col-sm-offset-2">
-						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} passIndex={this.saveJobIndex}/>
+						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} passIndex={this.saveJobIndex} onPageUpdate={this.handlePageUpdate} />
 					</div>
 				</div>
 			</div>	

@@ -17,7 +17,8 @@ var helpers = {
 				method: 'aj.jobs.search',
 				format: 'json',
 				keywords: params[0],
-				location: params[1]
+				location: params[1],
+				page: params[2]
 			}
 			// headers: {
 			// 	'Access-Control-Allow-Origin': '*',
