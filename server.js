@@ -61,7 +61,9 @@ app.get('/', function(req, res) {
 // pulls first 5 saved articles from the database and sorts by published date
 app.get('/api/saved', function(req, res) {
 	console.log('Find Jobs route triggered')
-	SavedJobs.find({}).exec(function(err, doc) {
+	SavedJobs.find({}).sort([
+			['save_date', 'descending']
+		]).exec(function(err, doc) {
 			if (err) {
 				console.log(err)
 			}
@@ -70,6 +72,18 @@ app.get('/api/saved', function(req, res) {
 				res.json(doc)
 			}
 		})
+})
+
+app.get('/api/is_saved/:id', function(req, res) {
+	// console.log('is saved route triggered')
+	console.log(req.params)
+	SavedJobs.count({auth_jobs_id: req.params.id}, function(err, count) {
+		if (count > 0) {
+			res.send(true)
+		} else {
+			res.send(false)
+		}
+	})
 })
 
 // adds new article to the database; need to convert date from string to date

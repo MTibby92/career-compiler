@@ -37,7 +37,7 @@ var Results = React.createClass({
 				<Pagination 
 					items={this.props.totalPages} 
 					maxButtons={this.props.totalPages} 
-					activePage={this.props.page} 
+					activePage={parseInt(this.props.page)} 
 					prev
 				    next
 				    first

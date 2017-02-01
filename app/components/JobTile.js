@@ -3,12 +3,19 @@ var ReactRouter = require('react-router')
 var ReactStormpath = require('react-stormpath')
 var moment = require('moment')
 var JobModal = require('./JobModal')
+var apiHelper = require('../utils/apiHelper')
 
 var JobTile = React.createClass({
 	getInitialState: function() {
 		return {
-			show: false
+			saved: false
 		}
+	},
+	componentDidMount: function() {
+		apiHelper.getJobSaveStatus(this.props.data.id).then(function(response) {
+			console.log(response.data)
+			this.handleButtonStatus(response.data)
+		}.bind(this))
 	},
 	openModal: function() {
 		this.setState({
@@ -24,12 +31,26 @@ var JobTile = React.createClass({
 		e.preventDefault()
 		console.log(this.key)
 		console.log(this.props.tileNum)
+
+		this.setState({
+			saved: true
+		})
 		
 		var obj = {
 			job_index: this.props.tileNum
 		}
 
 		this.props.saveJob(obj)
+	},
+	handleButtonStatus: function(boolean) {
+		console.log(boolean)
+		this.setState({
+			saved: boolean
+		})
+		// create axios get call
+		// create server route to count if _id exists and return
+		// set status of saved
+		// use that status to determine if button is active or not
 	},
 	render: function() {
 		if(this.props.data.company.location) {
@@ -60,7 +81,7 @@ var JobTile = React.createClass({
 					{ location }
 					<p>{((this.props.data.description).substring(0,200)).replace(/(<([^>]+)>)/ig,"") + '...'}</p>
 				</div>
-				<JobModal data={this.props.data} show={this.state.show} onHide={this.closeModal} onSave={this.handleJobSave} />
+				<JobModal data={this.props.data} show={this.state.show} onHide={this.closeModal} onSave={this.handleJobSave} buttonStatus={this.state.saved} />
 			</li>
 
 		)

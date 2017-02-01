@@ -38,6 +38,9 @@ var helpers = {
 	// posts updates made from MyJobs table
 	updateMyJobs: function(job) {
 		return axios.post('/api/update', {job: job})
+	},
+	getJobSaveStatus: function(id) {
+		return axios.get(`/api/is_saved/${id}`)
 	}
 }
 
