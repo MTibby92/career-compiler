@@ -40,6 +40,8 @@ var JobDescription = React.createClass({
 					<div className='jumbotron'>
 						<div className='row'>
 							<div className='col-sm-12'>
+								<h3 className="text-center">Saved Job Information</h3>
+								<hr/>
 								<table className="table table-hover table-responsive">
 									<colgroup>
 										<col className="col-sm-3" />
@@ -64,11 +66,11 @@ var JobDescription = React.createClass({
 										</tr>
 										<tr>
 											<td>Application URL:</td>
-											<td>{this.state.selected.apply_url}</td>
+											<td><a href={this.state.selected.apply_url} target="_blank">{this.state.selected.apply_url}</a></td>
 										</tr>
 										<tr>
 											<td>Company Website:</td>
-											<td>{this.state.selected.company_url}</td>
+											<td><a href={this.state.selected.company_url} target="_blank">{this.state.selected.company_url}</a></td>
 										</tr>
 										<tr>
 											<td>Date of Job Post:</td>
