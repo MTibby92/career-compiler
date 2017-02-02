@@ -152,7 +152,7 @@ var MyJobs = React.createClass({
 							<TableHeaderColumn dataField='apply_date' dataFormat={ dateFormatter} editable={{type: 'datetime'}} width='150'>Date of Application</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_name'>Contact Name</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_info'>Contact Info</TableHeaderColumn>
-							<TableHeaderColumn dataField='last_contact_date' dataFormat={ dateFormatter} editable={{type: 'date'}} width='150'>Date of Last Contact</TableHeaderColumn>
+							<TableHeaderColumn dataField='last_contact_date' dataFormat={ dateFormatter} editable={{type: 'datetime'}} width='150'>Date of Last Contact</TableHeaderColumn>
 							<TableHeaderColumn dataField='application_status'>Status</TableHeaderColumn>
 						</BootstrapTable>
 					</div>
