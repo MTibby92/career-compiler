@@ -135,15 +135,15 @@ var MyJobs = React.createClass({
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col-sm-12'>
-						<BootstrapTable data={myJobs} options={ { noDataText: 'This is custom text for empty data' }, options } cellEdit={ cellEditProp } striped hover condensed pagination>
-							<TableHeaderColumn isKey dataField='auth_jobs_id' editable={ false } hidden>Authentic Jobs ID</TableHeaderColumn>
-							<TableHeaderColumn dataField='title' editable={ false }>Job Title</TableHeaderColumn>
-							<TableHeaderColumn dataField='company_name' editable={ false }>Company Name</TableHeaderColumn>
-							<TableHeaderColumn dataField='type' editable={ false } hidden>Type of Position</TableHeaderColumn>
-							<TableHeaderColumn dataField='apply_url' editable={ false } hidden>Application URL</TableHeaderColumn>
-							<TableHeaderColumn dataField='company_url' editable={ false } hidden>Company Website</TableHeaderColumn>
-							<TableHeaderColumn dataField='post_date' editable={ false } hidden>Date of Job Post</TableHeaderColumn>
-							<TableHeaderColumn dataField='save_date' editable={ false } hidden>Date Job Saved</TableHeaderColumn>
+						<BootstrapTable data={myJobs} options={ { noDataText: 'This is custom text for empty data' }, options } cellEdit={ cellEditProp } exportCSV={ true } striped hover condensed pagination>
+							<TableHeaderColumn isKey dataField='auth_jobs_id' editable={ false } hidden export>Authentic Jobs ID</TableHeaderColumn>
+							<TableHeaderColumn dataField='title' editable={ false } export>Job Title</TableHeaderColumn>
+							<TableHeaderColumn dataField='company_name' editable={ false } export>Company Name</TableHeaderColumn>
+							<TableHeaderColumn dataField='type' editable={ false } hidden export>Type of Position</TableHeaderColumn>
+							<TableHeaderColumn dataField='apply_url' editable={ false } hidden export>Application URL</TableHeaderColumn>
+							<TableHeaderColumn dataField='company_url' editable={ false } hidden export>Company Website</TableHeaderColumn>
+							<TableHeaderColumn dataField='post_date' editable={ false } hidden export>Date of Job Post</TableHeaderColumn>
+							<TableHeaderColumn dataField='save_date' editable={ false } hidden export>Date Job Saved</TableHeaderColumn>
 							<TableHeaderColumn dataField='apply_date' dataFormat={ dateFormatter} editable={{type: 'datetime'}} width='150'>Date of Application</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_name'>Contact Name</TableHeaderColumn>
 							<TableHeaderColumn dataField='contact_info'>Contact Info</TableHeaderColumn>
