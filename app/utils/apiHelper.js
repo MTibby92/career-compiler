@@ -1,7 +1,7 @@
 var axios = require('axios')
 var keys = require('../../jobApiKeys')
 
-var authenticJobsKey = keys.authenticJobs
+var authenticJobsKey = process.env.AUTHENTIC_JOBS_KEY || keys.authenticJobs
 
 var helpers = {
 	getAuthenticJobs: function(params) {
