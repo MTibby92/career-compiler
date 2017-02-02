@@ -122,17 +122,18 @@ app.post('/api/update', function(req, res) {
 	})
 })
 
-// // deletes document from database based on title match
-// app.delete('/api/saved', function(req, res){
-// 	SavedArticles.findOne({title: req.body.article.title}, function(err, doc) {
-// 		if(err) {
-// 			console.log(err)
-// 		} else {
-// 			doc.remove()
-// 			res.send(doc)
-// 		}
-// 	})
-// })
+// deletes document from database based on title match
+app.delete('/api/saved', function(req, res){
+	console.log(req.body.id)
+	SavedJobs.findOne({auth_jobs_id: req.body.id}, function(err, doc) {
+		if(err) {
+			console.log(err)
+		} else {
+			doc.remove()
+			res.send(doc)
+		}
+	})
+})
 
 // necessary for React router browser history; must go last in order to not conflict with other get routes
 app.get('*', function (req, res){

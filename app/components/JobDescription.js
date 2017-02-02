@@ -1,7 +1,9 @@
 var React = require('react')
 var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
+var Button = require('react-bootstrap').Button
 var moment = require('moment')
+var apiHelper = require('../utils/apiHelper')
 
 var JobDescription = React.createClass({
 	getInitialState: function() {
@@ -30,6 +32,17 @@ var JobDescription = React.createClass({
 					last_contact_date: this.props.selected.last_contact_date,
 					application_status: this.props.selected.application_status
 				}
+			})
+		}
+	},
+	deleteJob: function() {
+		if (this.props.selected.auth_jobs_id) {
+			this.props.onUpdate(this.props.selected)
+			apiHelper.deleteSavedJob(this.props.selected.auth_jobs_id).then(function(response) {
+				console.log(response)
+				this.setState({
+					selected: {}
+				})
 			})
 		}
 	},
@@ -117,7 +130,12 @@ var JobDescription = React.createClass({
 											<td>{this.state.selected.application_status}</td>
 										</tr>
 									</tbody>
-								</table>							
+								</table>
+								{this.props.selected.auth_jobs_id ?
+									<Button onClick={this.deleteJob}>Delete this Job</Button>
+									:
+									<Button disabled>Delete this Job</Button>
+								}
 							</div>
 						</div>
 					</div>

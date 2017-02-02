@@ -41,6 +41,15 @@ var helpers = {
 	},
 	getJobSaveStatus: function(id) {
 		return axios.get(`/api/is_saved/${id}`)
+	},
+	deleteSavedJob: function(jobID) {
+		return axios({
+			method: 'delete',
+			url: '/api/saved',
+			data: {
+				id: jobID
+			}
+		})
 	}
 }
 

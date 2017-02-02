@@ -15,7 +15,7 @@ var MyJobs = React.createClass({
 	getInitialState: function() {
 		return {
 			jobs: [],
-			selected: {}	
+			selected: {}
 		}
 	},
 	// runs when the component first loads
@@ -30,6 +30,23 @@ var MyJobs = React.createClass({
 			console.log(response)
 			console.log(response.data)
 		}.bind(this))
+	},
+	// componentDidUpdate: function(prevProps, prevState) {
+
+	// },
+	// called in response to a job deletion
+	updateSelected: function(selectedObj) {
+		console.log(selectedObj)
+		if (selectedObj == this.state.selected) {
+			var filtered = this.state.jobs.filter(function(elem) {
+				return elem.auth_jobs_id != selectedObj.auth_jobs_id
+			})
+			console.log('filtered less than previous? ', filtered.length < this.state.selected)
+			this.setState({
+				jobs: filtered,
+				selected: {}
+			})
+		}
 	},
 	// handleRowClick: function(row) {
 	// 	this.setState({
@@ -78,18 +95,6 @@ var MyJobs = React.createClass({
 
 			return true
 		}
-
-		// var selectRow = {
-		// 	mode: 'checkbox',
-		// 	bgColor: 'lightblue', 
-		// 	hideSelectColumn: true,  
-		// 	clickToSelect: true,
-		// 	onSelect: function(row, isSelected, e) {
-		// 		console.log('The following row was clicked:', row)
-		// 		console.log(isSelected)
-		// 		console.log(e)
-		// 	}
-		// };
 
 		function dateFormatter(cell, row) {
 			if (cell) {
@@ -152,7 +157,7 @@ var MyJobs = React.createClass({
 						</BootstrapTable>
 					</div>
 				</div>
-				<JobDescription selected={this.state.selected} />
+				<JobDescription selected={this.state.selected} onUpdate={this.updateSelected}/>
 			</div>
 		)
 	}
