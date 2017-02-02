@@ -26,6 +26,7 @@ var Home = React.createClass({
 			apiHelper.getAuthenticJobs([this.state.keyword, this.state.location, this.state.page])
 				.then(function(results) {
 					// do something to display the results
+					console.log(results)
 					if (results.data.listings.listing !== this.state.resultsOnPage) {
 						console.log(results.data.listings.listing)
 						this.setState({

@@ -15,6 +15,13 @@ mongoose.Promise = Promise
 var app = express()
 var PORT = process.env.PORT || 3000
 
+// enabling cross origin requests on cors?
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
 // Initializes Stormpath SDK
 app.use(stormpath.init(app, {
   web: {
@@ -47,7 +54,6 @@ db.on('error', function(err) {
 db.once('open', function() {
   console.log('Mongoose connection successful.')
 })
-
 
 
 // Serve static content for the app from the 'public' directory in the application directory.
