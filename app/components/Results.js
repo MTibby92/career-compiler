@@ -26,7 +26,7 @@ var Results = React.createClass({
 	render: function() {
 		return (
 			<div >
-				<h3>Results go here</h3>
+				<h3 className="text-center">Search Results:</h3>
 				<ul className="media-list">
 					{this.props.resultsOnPage.map(function(result, num) {
 						return (
