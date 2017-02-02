@@ -65,7 +65,7 @@ var Home = React.createClass({
 	},
 	render: function() {
 		var searchHomeStyle = {
-			height: 90 + 'vh',
+			height: 76 + 'vh',
 			// width: 100 + 'vw',
 		    zIndex: 9,
 		    textAlign: 'center',

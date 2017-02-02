@@ -48,7 +48,11 @@ var JobModal = React.createClass({
 					<a href={this.props.data.url} target="_blank">Authentic Jobs Post</a>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.props.onSave} disabled={this.props.buttonStatus}>Add to MyJobs</Button>
+					{this.props.buttonStatus ?
+						<Button onClick={this.props.onSave} disabled={this.props.buttonStatus}>Already Saved</Button>
+						:
+						<Button onClick={this.props.onSave} >Add to MyJobs</Button>
+					}
 					<Button href={ external } target="_blank">Apply</Button>
 					<Button onClick={this.props.onHide}>Close</Button>
 				</Modal.Footer>
