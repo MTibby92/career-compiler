@@ -18,6 +18,7 @@ var Home = require('../components/Home')
 var Login = require('../components/Login')
 var SignUp = require('../components/SignUp')
 var MyJobs = require('../components/MyJobs')
+var ForgotPassword = require('../components/ForgotPassword')
 
 var routes = (
 	<Router history={browserHistory}>
@@ -25,6 +26,7 @@ var routes = (
 			<IndexRoute component={Home} />
 			<LoginRoute path="/login" component={Login} />
 			<Route path="/signup" component={SignUp} />
+			<Route path="/forgot" component={ForgotPassword} />
 			<AuthenticatedRoute path="/myjobs" component={MyJobs} />
 		</Route>
 	</Router>

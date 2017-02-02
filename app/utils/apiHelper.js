@@ -13,11 +13,11 @@ var helpers = {
 		// return axios.get(queryString)
 
 		return axios.get('https://authenticjobs.com/api/?', {
-			headers: {
-				// origin: 'http://www.example.com',
-				'Access-Control-Allow-Origin': '*',
-				'Access-Control-Allow-Headers': "X-Requested-With"
-			},
+			// headers: {
+			// 	// origin: 'http://www.example.com',
+			// 	'Access-Control-Allow-Origin': '*',
+			// 	'Access-Control-Allow-Headers': "X-Requested-With"
+			// },
 			params: {
 				api_key: authenticJobsKey,
 				method: 'aj.jobs.search',
@@ -25,8 +25,8 @@ var helpers = {
 				keywords: params[0],
 				location: params[1],
 				page: params[2],
-			},
-			withCredentials: true
+			}
+			// withCredentials: true
 		})
 
 		// return axios.get('https://crossorigin.me/https://authenticjobs.com/api/?', {
