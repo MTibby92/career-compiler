@@ -92,10 +92,11 @@ var Home = React.createClass({
 					<div className="col-sm-12" style={searchHomeStyle}>
 						<h1 className="text-center" style={searchHeaderStyle}>Career Compiler</h1>
 						<Search setTerms={this.setTerms}/>
+						<a className="btn" href="#results"><i className="glyphicon glyphicon-arrow-down"></i></a>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-sm-4 col-sm-offset-4" style={resultsHomeStyle}>
+					<div className="col-sm-4 col-sm-offset-4" id="results" style={resultsHomeStyle}>
 						<Results resultsOnPage={this.state.resultsOnPage} page={this.state.page} totalPages={this.state.totalPages} passIndex={this.saveJobIndex} onPageUpdate={this.handlePageUpdate} />
 					</div>
 				</div>
